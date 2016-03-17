@@ -21,6 +21,7 @@ public class BoardView extends View {
     private int colorP2 = Color.BLACK;
     private int colorBG = Color.parseColor("#6d8d46");
     private int colorCell = Color.parseColor("#87aa4c");
+    private int colorWarpCell = Color.MAGENTA;
     private int colorText = Color.parseColor("#cfe8a6");
 
     // These variables will be used to keep track of what to render
@@ -109,7 +110,8 @@ public class BoardView extends View {
                 float startY = j * cellSize + padding/2;
                 float endX = startX + cellSize - padding;
                 float endY = startY + cellSize - padding;
-                paint.setColor(colorCell);
+                if((j==0&&i==2)||(j==1&&i==0)||(j==1&&i==2)||(j==3&&i==5)) paint.setColor(colorWarpCell);
+                else paint.setColor(colorCell);
                 canvas.drawRect(startX, startY, endX, endY, paint);
                 paint.setColor(colorText);
                 String label = (j *  boardSize + i + 1) + "";

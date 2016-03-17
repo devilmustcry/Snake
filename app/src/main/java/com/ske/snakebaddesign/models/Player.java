@@ -30,4 +30,12 @@ public class Player {
         return num;
     }
 
+    public void setSquare(Square square) {
+        piece.setSquare(square);
+    }
+
+    public Square getSquare() {
+        return piece.getSquare();
+    }
+
 }

@@ -12,6 +12,7 @@ public class Piece {
     public Piece(int position) {
         this.position = position;
     }
+
     public int getPosition() {
         return this.position;
     }
@@ -20,6 +21,12 @@ public class Piece {
         this.position = position;
     }
 
+    public void setSquare(Square square) {
+        this.square = square;
+    }
 
 
+    public Square getSquare() {
+        return square;
+    }
 }

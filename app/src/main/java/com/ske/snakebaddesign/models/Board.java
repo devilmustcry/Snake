@@ -19,7 +19,8 @@ public class Board {
         this.p2Position = p2Position;
         squareList = new ArrayList<Square>();
         for(int i =1; i<=boardSize*boardSize;i++) {
-            squareList.add(new Square(i));
+            if(i==3||i==7||i==10||i==24) squareList.add(new WarpSquare());
+            else squareList.add(new NormalSquare());
         }
     }
 
@@ -50,5 +51,9 @@ public class Board {
 
     public List<Square> getSquareList() {
         return squareList;
+    }
+
+    public Square getSquare(int i) {
+        return squareList.get(i);
     }
 }

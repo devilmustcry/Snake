@@ -28,8 +28,14 @@ public class Game extends Observable {
     }
 
     public void moveCurrentPiece(int value) {
+        int effect = 0;
         if(turn % 2 == 0) {
             player1.setPosition(adjustPosition(player1.getPosition(), value));
+
+            player1.setSquare(board.getSquare(player1.getPosition()));
+            effect = player1.getSquare().effect();
+            if(effect!=-1)
+                player1.setPosition(effect);
             board.setP1Position(player1.getPosition());
             setChanged();
             notifyObservers(player2);
@@ -37,10 +43,18 @@ public class Game extends Observable {
         }
         else {
             player2.setPosition(adjustPosition(player2.getPosition(), value));
+            player2.setSquare(board.getSquare(player2.getPosition()));
+            effect = player2.getSquare().effect();
+            if(effect!=-1) {
+                player2.setPosition(effect);
+
+            }
             board.setP2Position(player2.getPosition());
+
             setChanged();
             notifyObservers(player1);
         }
+
         checkWin();
         turn++;
     }
@@ -70,6 +84,8 @@ public class Game extends Observable {
         die = new Die();
         board = new Board(6, player1.getPosition(),player2.getPosition());
         turn = 0;
+        player1.setSquare(board.getSquare(0));
+        player2.setSquare(board.getSquare(0));
     }
 
     public int getBoardSize() {
